@@ -99,5 +99,5 @@ public class Contact : ObservableObject
     /// <summary>
     /// Полное имя (фамилия + имя)
     /// </summary>
-    public string FullName => $"{FirstName} {LastName}".Trim();
+    public string FullName => $"{LastName} {FirstName}".Trim();
 }
