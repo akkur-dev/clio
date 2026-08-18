@@ -110,6 +110,10 @@
                             <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"/>
                         </HeaderedContentControl>
 
+                        <HeaderedContentControl Header="ЗАМЕТКА" Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        </HeaderedContentControl>
+
                         <HeaderedContentControl Header="ТЕЛЕФОН" Style="{StaticResource FormRowStyle}">
                             <TextBox x:Name="PhoneTextBox" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}">
                                 <beh:Interaction.Behaviors>

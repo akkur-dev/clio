@@ -222,6 +222,7 @@ public class MainViewModel : ObservableObject
             FirstName = "Новый", 
             LastName = "Контакт", 
             MiddleName = String.Empty,
+            Description = String.Empty,
             Phone = String.Empty,
             Email = String.Empty,
             BirthDate = null
