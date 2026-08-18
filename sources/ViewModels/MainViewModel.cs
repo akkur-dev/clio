@@ -233,7 +233,7 @@ public class MainViewModel : ObservableObject
             BirthDate = null
         };
 
-        _contacts.Add(newContact);        
+        _contacts.Add(newContact);
 
         // Автоматически выбираем его.
         SelectedContact = newContact;
