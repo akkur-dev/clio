@@ -133,7 +133,7 @@ public class Contact : ObservableObject
     /// <summary>
     /// Полное имя
     /// </summary>
-    public string FullName => (String.IsNullOrEmpty(FirstName) && String.IsNullOrEmpty(LastName)) 
+    public string FullName => (String.IsNullOrEmpty(FirstName) && String.IsNullOrEmpty(LastName) && String.IsNullOrEmpty(MiddleName)) 
         ? "Анонимный контакт" 
-        : $"{LastName} {FirstName}".Trim();
+        : $"{LastName} {FirstName} {MiddleName}".Trim();
 }

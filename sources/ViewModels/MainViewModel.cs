@@ -205,17 +205,26 @@ public class MainViewModel : ObservableObject
 
         if (obj is Contact contact)
         {
-            var searchLower = SearchText.Trim().ToLower();
+            var searchQuery = SearchText.Trim().ToLower();
 
-            var matchName = contact.FullName != null && contact.FullName.ToLower().Contains(searchLower);
-            var matchPhone = contact.Phone != null && contact.Phone.Replace(" ", "").Replace("-", "").Contains(searchLower.Replace(" ", "").Replace("-", ""));
+            var contactProperties = new List<string>
+            {
+                contact.FullName,
+                contact.Description,
+                contact.Phone,
+                contact.PhoneAdvanced,
+                contact.Email,
+                contact.TelegramId,
+                contact.VkId
+            };
+
+            var isMatched = contactProperties.Any(prop => prop != null && prop.ToLower().Contains(searchQuery));
 
             // Если хоть один критерий совпал — контакт остается на экране
-            return matchName || matchPhone;
+            return isMatched;
         }
         return false;
     }
-
 
     /// <summary>
     /// Обрабатывает добавление нового контакта в список.
