@@ -13,6 +13,8 @@ public class Contact : ObservableObject
 
     private string _middleName;
 
+    private string _description;
+
     private string _phone;
 
     private string _email;
@@ -65,6 +67,15 @@ public class Contact : ObservableObject
     {
         get => _phone; 
         set => SetProperty(ref _phone, value);
+    }
+
+    /// <summary>
+    /// Описание контакта
+    /// </summary>
+    public string Description
+    {
+        get => _description;
+        set => SetProperty(ref _description, value);
     }
 
     /// <summary>
