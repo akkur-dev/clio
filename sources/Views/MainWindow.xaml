@@ -45,7 +45,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Margin="0,0,0,15">
@@ -74,6 +74,13 @@
                              ItemTemplate="{StaticResource ContactTemplate}"
                              ItemsSource="{Binding ContactsView}"
                              SelectedItem="{Binding SelectedContact}"/>
+
+                    <TextBlock Grid.Row="2" 
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               Foreground="#7A8A9E"
+                               Text="{Binding ElementName=ContactsListBox, Path=Items.Count, StringFormat='Всего контактов: {0}'}"/>
+                    
                 </Grid>
             </ContentControl>
 
@@ -110,17 +117,34 @@
                             <TextBox Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}"/>
                         </HeaderedContentControl>
 
+                        <HeaderedContentControl Header="РОЖДЕНИЕ" Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=LostFocus, Converter={StaticResource DateOnlyConverter}, TargetNullValue=''}" 
+                                     Tag="ДД.ММ.ГГГГ">
+                                <beh:Interaction.Behaviors>
+                                    <h:MaskedDateBehavior />
+                                </beh:Interaction.Behaviors>
+                            </TextBox>
+                        </HeaderedContentControl>
+
                         <HeaderedContentControl Header="ЗАМЕТКА" Style="{StaticResource FormRowStyle}">
                             <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                         </HeaderedContentControl>
 
-                        <HeaderedContentControl Header="ТЕЛЕФОН" Style="{StaticResource FormRowStyle}">
-                            <TextBox x:Name="PhoneTextBox" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}">
+                        <HeaderedContentControl Header="ТЕЛЕФОН ОСН." Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}">
                                 <beh:Interaction.Behaviors>
                                     <h:MaskedPhoneBehavior />
                                 </beh:Interaction.Behaviors>
                             </TextBox>
                         </HeaderedContentControl>
+
+                        <HeaderedContentControl Header="ТЕЛЕФОН ДОП." Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding PhoneAdvanced, UpdateSourceTrigger=PropertyChanged}">
+                                <beh:Interaction.Behaviors>
+                                    <h:MaskedPhoneBehavior />
+                                </beh:Interaction.Behaviors>
+                            </TextBox>
+                        </HeaderedContentControl>                        
 
                         <HeaderedContentControl Header="EMAIL" Style="{StaticResource FormRowStyle}">
                             <TextBox x:Name="EmailTextBox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}">
@@ -130,13 +154,12 @@
                             </TextBox>
                         </HeaderedContentControl>
 
-                        <HeaderedContentControl Header="РОЖДЕНИЕ" Style="{StaticResource FormRowStyle}">
-                            <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=LostFocus, Converter={StaticResource DateOnlyConverter}, TargetNullValue=''}" 
-                                     Tag="ДД.ММ.ГГГГ">
-                                <beh:Interaction.Behaviors>
-                                    <h:MaskedDateBehavior />
-                                </beh:Interaction.Behaviors>
-                            </TextBox>
+                        <HeaderedContentControl Header="TELEGRAM ID" Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding TelegramId, UpdateSourceTrigger=PropertyChanged}"/>
+                        </HeaderedContentControl>
+
+                        <HeaderedContentControl Header="VK ID" Style="{StaticResource FormRowStyle}">
+                            <TextBox Text="{Binding VkId, UpdateSourceTrigger=PropertyChanged}"/>
                         </HeaderedContentControl>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">

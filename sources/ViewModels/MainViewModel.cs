@@ -205,17 +205,26 @@ public class MainViewModel : ObservableObject
 
         if (obj is Contact contact)
         {
-            var searchLower = SearchText.Trim().ToLower();
+            var searchQuery = SearchText.Trim().ToLower();
 
-            var matchName = contact.FullName != null && contact.FullName.ToLower().Contains(searchLower);
-            var matchPhone = contact.Phone != null && contact.Phone.Replace(" ", "").Replace("-", "").Contains(searchLower.Replace(" ", "").Replace("-", ""));
+            var contactProperties = new List<string>
+            {
+                contact.FullName,
+                contact.Description,
+                contact.Phone,
+                contact.PhoneAdvanced,
+                contact.Email,
+                contact.TelegramId,
+                contact.VkId
+            };
+
+            var isMatched = contactProperties.Any(prop => prop != null && prop.ToLower().Contains(searchQuery));
 
             // Если хоть один критерий совпал — контакт остается на экране
-            return matchName || matchPhone;
+            return isMatched;
         }
         return false;
     }
-
 
     /// <summary>
     /// Обрабатывает добавление нового контакта в список.
@@ -224,12 +233,15 @@ public class MainViewModel : ObservableObject
     {
         var newContact = new Contact 
         { 
-            FirstName = "Контакт", 
-            LastName = "Новый", 
+            FirstName = String.Empty,
+            LastName = String.Empty,
             MiddleName = String.Empty,
             Description = String.Empty,
             Phone = String.Empty,
+            PhoneAdvanced = String.Empty,
             Email = String.Empty,
+            TelegramId = String.Empty,
+            VkId = String.Empty,
             BirthDate = null
         };
 
@@ -241,6 +253,8 @@ public class MainViewModel : ObservableObject
         // Сразу включаем режим редактирования для нового контакта.
         IsReadOnly = false;
         EditSaveButtonText = "Сохранить изменения";
+
+        _contactsView.Refresh();
     }
 
     /// <summary>
@@ -269,6 +283,7 @@ public class MainViewModel : ObservableObject
 
         // Закрываем диалог
         ActiveDialog = null;
+        _contactsView.Refresh();
     }
     
     /// <summary>
@@ -289,6 +304,7 @@ public class MainViewModel : ObservableObject
             try
             {
                 StorageService.Save(_contacts, MasterPassword, PasswordHint);
+                _contactsView.Refresh();
             }
             catch (Exception ex)
             {
