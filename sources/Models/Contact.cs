@@ -1,4 +1,5 @@
 ﻿using Clio.Helpers;
+using System.Text;
 
 namespace Clio.Models;
 
@@ -17,7 +18,13 @@ public class Contact : ObservableObject
 
     private string _phone;
 
+    private string _phoneAdvanced;
+
     private string _email;
+
+    private string _telegramId;
+
+    private string _vkId;
 
     private DateOnly? _birthDate;
 
@@ -61,15 +68,6 @@ public class Contact : ObservableObject
     }
 
     /// <summary>
-    /// Номер телефона
-    /// </summary>
-    public string Phone 
-    {
-        get => _phone; 
-        set => SetProperty(ref _phone, value);
-    }
-
-    /// <summary>
     /// Описание контакта
     /// </summary>
     public string Description
@@ -79,12 +77,48 @@ public class Contact : ObservableObject
     }
 
     /// <summary>
+    /// Основной номер телефона
+    /// </summary>
+    public string Phone 
+    {
+        get => _phone; 
+        set => SetProperty(ref _phone, value);
+    }
+
+    /// <summary>
+    /// Дополнительный номер телефона
+    /// </summary>
+    public string PhoneAdvanced
+    {
+        get => _phoneAdvanced;
+        set => SetProperty(ref _phoneAdvanced, value);
+    }    
+
+    /// <summary>
     /// Электронная почта
     /// </summary>
     public string Email 
     {
         get => _email; 
         set => SetProperty(ref _email, value); 
+    }
+
+    /// <summary>
+    /// Идентификатор аккаунта в Telegram
+    /// </summary>
+    public string TelegramId
+    {
+        get => _telegramId;
+        set => SetProperty(ref _telegramId, value);
+    }
+
+    /// <summary>
+    /// Идентификатор аккаунта в Vk
+    /// </summary>
+    public string VkId
+    {
+        get => _vkId;
+        set => SetProperty(ref _vkId, value);
     }
 
     /// <summary>
@@ -97,7 +131,9 @@ public class Contact : ObservableObject
     }
 
     /// <summary>
-    /// Полное имя (фамилия + имя)
+    /// Полное имя
     /// </summary>
-    public string FullName => $"{LastName} {FirstName}".Trim();
+    public string FullName => (String.IsNullOrEmpty(FirstName) && String.IsNullOrEmpty(LastName)) 
+        ? "Анонимный контакт" 
+        : $"{LastName} {FirstName}".Trim();
 }

@@ -224,12 +224,15 @@ public class MainViewModel : ObservableObject
     {
         var newContact = new Contact 
         { 
-            FirstName = "Контакт", 
-            LastName = "Новый", 
+            FirstName = String.Empty,
+            LastName = String.Empty,
             MiddleName = String.Empty,
             Description = String.Empty,
             Phone = String.Empty,
+            PhoneAdvanced = String.Empty,
             Email = String.Empty,
+            TelegramId = String.Empty,
+            VkId = String.Empty,
             BirthDate = null
         };
 
@@ -241,6 +244,8 @@ public class MainViewModel : ObservableObject
         // Сразу включаем режим редактирования для нового контакта.
         IsReadOnly = false;
         EditSaveButtonText = "Сохранить изменения";
+
+        _contactsView.Refresh();
     }
 
     /// <summary>
@@ -269,6 +274,7 @@ public class MainViewModel : ObservableObject
 
         // Закрываем диалог
         ActiveDialog = null;
+        _contactsView.Refresh();
     }
     
     /// <summary>
@@ -289,6 +295,7 @@ public class MainViewModel : ObservableObject
             try
             {
                 StorageService.Save(_contacts, MasterPassword, PasswordHint);
+                _contactsView.Refresh();
             }
             catch (Exception ex)
             {

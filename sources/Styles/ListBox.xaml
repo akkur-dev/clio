@@ -17,7 +17,7 @@
     <!-- Стиль элемента списка -->
     <Style TargetType="ListBoxItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Height" Value="66"/>
+        <Setter Property="Height" Value="90"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -70,12 +70,17 @@
         <StackPanel VerticalAlignment="Center">
             
             <TextBlock Text="{Binding FullName}" 
-                       FontSize="15" 
+                       FontSize="16" 
                        FontWeight="SemiBold" 
                        Foreground="White"/>
-            
+
+            <TextBlock Text="{Binding Description}" 
+                       FontSize="14" 
+                       Foreground="#7A8A9E" 
+                       Margin="0,3,0,0"/>
+
             <TextBlock Text="{Binding Phone}" 
-                       FontSize="12" 
+                       FontSize="14" 
                        Foreground="#7A8A9E" 
                        Margin="0,3,0,0"/>
         </StackPanel>
