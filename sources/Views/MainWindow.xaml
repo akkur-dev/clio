@@ -45,7 +45,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Margin="0,0,0,15">
@@ -74,6 +74,13 @@
                              ItemTemplate="{StaticResource ContactTemplate}"
                              ItemsSource="{Binding ContactsView}"
                              SelectedItem="{Binding SelectedContact}"/>
+
+                    <TextBlock Grid.Row="2" 
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource PlaceholderLabelStyle}"
+                               Foreground="#7A8A9E"
+                               Text="{Binding ElementName=ContactsListBox, Path=Items.Count, StringFormat='Всего контактов: {0}'}"/>
+                    
                 </Grid>
             </ContentControl>
 
