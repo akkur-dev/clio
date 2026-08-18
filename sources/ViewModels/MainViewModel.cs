@@ -177,6 +177,11 @@ public class MainViewModel : ObservableObject
 
         // Включаем матовый оверлей ввода пароля прямо при старте приложения
         ActiveDialog = new PasswordDialogViewModel();
+
+        _contactsView.SortDescriptions.Clear();
+
+        var sortLastNameDesc = new SortDescription("FullName", ListSortDirection.Ascending);
+        _contactsView.SortDescriptions.Add(sortLastNameDesc);
     }    
 
     /// <summary>
@@ -219,8 +224,8 @@ public class MainViewModel : ObservableObject
     {
         var newContact = new Contact 
         { 
-            FirstName = "Новый", 
-            LastName = "Контакт", 
+            FirstName = "Контакт", 
+            LastName = "Новый", 
             MiddleName = String.Empty,
             Description = String.Empty,
             Phone = String.Empty,
