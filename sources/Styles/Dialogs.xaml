@@ -101,7 +101,7 @@
             <DataTrigger Binding="{Binding DataContext.IsNewDatabase, ElementName=RootWindow}" Value="True">
                 <Setter TargetName="DialogTitle" 
                         Property="Text" 
-                        Value="Создание базы данных Clio"/>
+                        Value="СОЗДАНИЕ ХРАНИЛИЩА"/>
                 
                 <Setter TargetName="DialogDescription" 
                         Property="Text" 

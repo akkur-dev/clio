@@ -56,7 +56,7 @@
                         
                         <TextBox x:Name="SearchTextBox" 
                                  Grid.Column="0" 
-                                 Tag="Поиск по архиву..."
+                                 Tag="Найти контакт"
                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
                                  Margin="0,0,10,0"/>
 
@@ -130,7 +130,7 @@
                             <TextBox Text="{Binding BirthDate, UpdateSourceTrigger=LostFocus, Converter={StaticResource DateOnlyConverter}, TargetNullValue=''}" 
                                      Tag="ДД.ММ.ГГГГ">
                                 <beh:Interaction.Behaviors>
-                                    <h:MaskedEmailBehavior />
+                                    <h:MaskedDateBehavior />
                                 </beh:Interaction.Behaviors>
                             </TextBox>
                         </HeaderedContentControl>
